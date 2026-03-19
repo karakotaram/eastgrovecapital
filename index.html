@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East Grove Capital</title>
+    <meta name="description" content="East Grove Capital - Investment Management">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #2a2a2a;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(24px, 5vw, 80px);
+            height: 80px;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(22px, 2.5vw, 30px);
+            color: #fff;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+        }
+
+        /* ── Mobile menu ── */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            margin: 5px 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.35) 0%,
+                rgba(0, 0, 0, 0.15) 50%,
+                rgba(0, 0, 0, 0.4) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(36px, 6vw, 72px);
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .hero-content .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.6);
+            margin: 0 auto;
+        }
+
+        /* ── About / Team ── */
+        .about {
+            padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px);
+            background: #f2f0ed;
+        }
+
+        .about-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(28px, 4vw, 48px);
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: clamp(40px, 6vw, 80px);
+            color: #2a2a2a;
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(32px, 5vw, 80px);
+        }
+
+        .member h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 500;
+            font-size: clamp(20px, 2vw, 26px);
+            margin-bottom: 16px;
+            color: #2a2a2a;
+        }
+
+        .member p {
+            font-size: clamp(14px, 1.1vw, 16px);
+            line-height: 1.8;
+            color: #555;
+            font-weight: 300;
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 40px clamp(24px, 5vw, 80px);
+            background: #e8e6e3;
+        }
+
+        footer a {
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #2a2a2a;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(30, 30, 30, 0.98);
+                padding: 0;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+
+            nav.open {
+                max-height: 200px;
+                padding: 16px 0;
+            }
+
+            nav a {
+                padding: 12px 24px;
+                display: block;
+                width: 100%;
+            }
+
+            .team {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">East Grove Capital</a>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <a href="#" class="active">HOME</a>
+            <a href="#about">ABOUT US</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img class="hero-img" src="hero.jpg" alt="Forest path">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>East Grove Capital</h1>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-inner">
+            <h2 class="section-title">OUR TEAM</h2>
+            <div class="team">
+                <div class="member">
+                    <h3>Chris Fortson</h3>
+                    <p>Chris has over <span class="years" data-since="2006"></span> years of investing experience. Prior to starting East Grove Capital, Chris was a partner and portfolio manager at Grantham, Mayo, Van Otterloo &amp; Co. Before that, he was an analyst and associate at Sankaty Advisors, the credit affiliate of Bain Capital. Chris graduated from Yale University with a B.A. in Economics and Mathematics.</p>
+                </div>
+                <div class="member">
+                    <h3>Karan Arakotaram</h3>
+                    <p>Karan has over <span class="years" data-since="2010"></span> years of investing experience. Prior to starting East Grove Capital, Karan was a senior analyst at Grantham, Mayo, Van Otterloo &amp; Co. Before that, he was an analyst and associate at Stockbridge Investors, the public equity affiliate of Berkshire Partners. Karan graduated from Yale University with a B.A. in Ethics, Politics, and Economics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:info@eastgrovecapital.com">info@eastgrovecapital.com</a>
+    </footer>
+
+    <script>
+        // Dynamic years of investing
+        document.querySelectorAll('.years').forEach(function(el) {
+            var since = parseInt(el.getAttribute('data-since'), 10);
+            el.textContent = new Date().getFullYear() - since;
+        });
+
+        // Mobile menu toggle
+        var toggle = document.querySelector('.menu-toggle');
+        var nav = document.querySelector('nav');
+        toggle.addEventListener('click', function() {
+            toggle.classList.toggle('open');
+            nav.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        nav.querySelectorAll('a').forEach(function(a) {
+            a.addEventListener('click', function() {
+                toggle.classList.remove('open');
+                nav.classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
